@@ -5,7 +5,6 @@ import com.mlereste.customerservice.service.CustomerService;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,8 +13,10 @@ import java.util.List;
  * Created by Marc Le Reste (chdlema) on 16/04/2021.<br/>
  */
 @RestController
-@RequestMapping("/api/")
 public class CustomerController {
+
+    public static final String API_PATH = "/api/";
+    public static final String CUSTOMERS_PATH = API_PATH + "customers";
 
     final
     CustomerService customerService;
@@ -24,7 +25,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping(value = "/customers", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = CUSTOMERS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Customer> getCustomers() {
         return customerService.getCustomers();
     }
