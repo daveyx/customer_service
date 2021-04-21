@@ -5,6 +5,8 @@ import com.mlereste.customerservice.service.CustomerService;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,5 +30,10 @@ public class CustomerController {
     @GetMapping(value = CUSTOMERS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Customer> getCustomers() {
         return customerService.getCustomers();
+    }
+
+    @PostMapping(value = CUSTOMERS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Customer modifyCustomer(@RequestBody Customer customerToUpdate) {
+        return customerService.createCustomer(customerToUpdate);
     }
 }
